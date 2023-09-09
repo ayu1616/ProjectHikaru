@@ -10,6 +10,9 @@ namespace Utility
 
     public class NetworkUtility : MonoBehaviour
     {
+        [SerializeField] private GameObject m_can;
+        [SerializeField] private GameObject m_playerObject;
+        
         //初期化変数
         private bool m_isInitialize = false;
 
@@ -42,7 +45,21 @@ namespace Utility
         //TODO 本実装では無し
         private void OnConnectedToServer()
         {
-            PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions(), TypedLobby.Default);
+            bool isJoined = PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions(), TypedLobby.Default);
+            if (isJoined)
+            {
+                //座標ランダム
+                var position = m_playerObject.transform.position;
+                position.x = UnityEngine.Random.Range(-10.0f, 10.0f);
+                position.z = UnityEngine.Random.Range(-10.0f, 10.0f);
+                
+                //缶を生成して親設定
+                var canInstance = Instantiate(m_can, position, Quaternion.identity);
+                m_playerObject.transform.parent = canInstance.transform;
+                
+                //プレイヤー生成
+                PhotonNetwork.Instantiate(m_playerObject.name, position, Quaternion.identity);
+            }
         }
         
     }
