@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class LobbyProc : MonoBehaviour
 {
+    [SerializeField]
+    SceneChanger m_sceneChanger;
+
     //ロビー画面
     [SerializeField]
     GameObject m_lobbyUI;
@@ -74,7 +77,7 @@ public class LobbyProc : MonoBehaviour
             //ネットワーク処理をシングルトンにしてここで処理を行う
 
             //シーンロード
-            SceneManager.LoadScene("GameScene");
+            m_sceneChanger.ChangeScene();
         });
 
     }
