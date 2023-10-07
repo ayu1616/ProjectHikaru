@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Utility;
 
 public class LobbyProc : MonoBehaviour
 {
@@ -75,9 +76,11 @@ public class LobbyProc : MonoBehaviour
         {
             //TODO ネットワーク接続でルーム作成
             //ネットワーク処理をシングルトンにしてここで処理を行う
-
-            //シーンロード
-            m_sceneChanger.ChangeScene();
+            if (NetworkUtility.Instance.CreateRoom(m_roomNameText.name, m_roomPasswordText.name))
+            {
+                //シーンロード
+                m_sceneChanger.ChangeScene();
+            }
         });
 
     }

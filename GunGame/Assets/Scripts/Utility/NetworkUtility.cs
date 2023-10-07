@@ -8,13 +8,12 @@ using UnityEngine;
 namespace Utility
 {
 
-    public class NetworkUtility : MonoBehaviour
-    {
-        [SerializeField] private GameObject m_can;
-        [SerializeField] private GameObject m_playerObject;
-        
+    public class NetworkUtility : SingletonMonoBehaviour<NetworkUtility>
+    {        
         //初期化変数
         private bool m_isInitialize = false;
+        //ルーム作成
+        private bool m_isCreateRoom = false;
 
         public bool TryInitialize()
         {
@@ -41,25 +40,36 @@ namespace Utility
         }
 
 
+
+        public bool CreateRoom(string roomName, string password = null)
+        {
+            //ルーム作成済み
+            if (m_isCreateRoom) return true;
+            //初期化失敗
+            if (!TryInitialize()) return false;
+
+            string key = roomName + "_" + password;
+
+            //ルーム作成
+            bool isJoined = PhotonNetwork.CreateRoom(key, new RoomOptions(), TypedLobby.Default);
+            if (isJoined)
+            {
+                Debug.Log("ルーム作成しました。");
+                m_isCreateRoom = true;
+                return true;
+            }
+
+            Debug.LogError("ルーム作成に失敗しました。");
+            return false;
+        }
+
+
+
         //マスターサーバーへの接続が成功した時に呼ばれる
         //TODO 本実装では無し
         private void OnConnectedToServer()
         {
-            bool isJoined = PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions(), TypedLobby.Default);
-            if (isJoined)
-            {
-                //座標ランダム
-                var position = m_playerObject.transform.position;
-                position.x = UnityEngine.Random.Range(-10.0f, 10.0f);
-                position.z = UnityEngine.Random.Range(-10.0f, 10.0f);
-                
-                //缶を生成して親設定
-                var canInstance = Instantiate(m_can, position, Quaternion.identity);
-                m_playerObject.transform.parent = canInstance.transform;
-                
-                //プレイヤー生成
-                PhotonNetwork.Instantiate(m_playerObject.name, position, Quaternion.identity);
-            }
+            Debug.Log("サーバーに接続された");
         }
         
     }

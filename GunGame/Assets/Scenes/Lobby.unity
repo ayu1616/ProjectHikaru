@@ -1230,6 +1230,7 @@ GameObject:
   - component: {fileID: 966305456}
   - component: {fileID: 966305457}
   - component: {fileID: 966305458}
+  - component: {fileID: 966305459}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -1264,6 +1265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68547cfa1ced7ec49b640702dce32555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_sceneChanger: {fileID: 966305458}
   m_lobbyUI: {fileID: 1678470717}
   m_createUI: {fileID: 547100947}
   m_joinUI: {fileID: 488922120}
@@ -1285,6 +1287,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadSceneEnum: 3
+--- !u!114 &966305459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966305455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c2905b86de8e22408f4e82fffb010e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_can: {fileID: 0}
+  m_playerObject: {fileID: 0}
 --- !u!1 &1040260898
 GameObject:
   m_ObjectHideFlags: 0
