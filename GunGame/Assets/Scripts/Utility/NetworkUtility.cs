@@ -37,6 +37,9 @@ namespace Utility
         void Start()
         {
             TryInitialize();
+
+            //TODO 仮処理
+            DontDestroyOnLoad(gameObject);
         }
 
 
@@ -66,7 +69,6 @@ namespace Utility
 
 
         //マスターサーバーへの接続が成功した時に呼ばれる
-        //TODO 本実装では無し
         private void OnConnectedToServer()
         {
             Debug.Log("サーバーに接続された");

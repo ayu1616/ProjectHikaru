@@ -51,7 +51,6 @@ public class LobbyProc : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //TODO ボタン押してシーン読み込み
 
         //作成
         m_createWindowButton.onClick.AddListener(() =>
@@ -74,8 +73,6 @@ public class LobbyProc : MonoBehaviour
 
         m_createRoomButton.onClick.AddListener(() =>
         {
-            //TODO ネットワーク接続でルーム作成
-            //ネットワーク処理をシングルトンにしてここで処理を行う
             if (NetworkUtility.Instance.CreateRoom(m_roomNameText.name, m_roomPasswordText.name))
             {
                 //シーンロード
