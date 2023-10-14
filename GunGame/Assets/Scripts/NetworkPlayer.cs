@@ -1,4 +1,4 @@
-using Photon.Pun;
+ï»¿using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,15 +27,15 @@ public class NetworkPlayer : MonoBehaviour
     {
         if (!NetworkUtility.Instance.TryInitialize()) return;
 
-        //À•Wƒ‰ƒ“ƒ_ƒ€
+        //åº§æ¨™ãƒ©ãƒ³ãƒ€ãƒ 
         var position = m_playerObject.transform.position;
         position.x = UnityEngine.Random.Range(-10.0f, 10.0f);
         position.z = UnityEngine.Random.Range(-10.0f, 10.0f);
 
-        //ƒvƒŒƒCƒ„[¶¬
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”Ÿæˆ
         var playerInstance = PhotonNetwork.Instantiate(m_playerObject.name, position, Quaternion.identity);
 
-        //ŠÊ‚ğ¶¬‚µ‚Äeİ’è
+        //ç¼¶ã‚’ç”Ÿæˆã—ã¦è¦ªè¨­å®š
         var canInstance = PhotonNetwork.Instantiate(m_can.name, position, Quaternion.identity);
         playerInstance.transform.parent = canInstance.transform;
     }

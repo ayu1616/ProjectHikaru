@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,38 +11,38 @@ public class LobbyProc : MonoBehaviour
     [SerializeField]
     SceneChanger m_sceneChanger;
 
-    //ÉçÉrÅ[âÊñ 
+    //„É≠„Éì„ÉºÁîªÈù¢
     [SerializeField]
     GameObject m_lobbyUI;
 
-    //ÉãÅ[ÉÄçÏê¨âÊñ 
+    //„É´„Éº„É†‰ΩúÊàêÁîªÈù¢
     [SerializeField]
     GameObject m_createUI;
 
-    //ÉãÅ[ÉÄçÏê¨âÊñ 
+    //„É´„Éº„É†‰ΩúÊàêÁîªÈù¢
     [SerializeField]
     GameObject m_joinUI;
 
 
 
-    //ÉçÉrÅ[çÏê¨É{É^Éì
+    //„É≠„Éì„Éº‰ΩúÊàê„Éú„Çø„É≥
     [SerializeField]
     Button m_createWindowButton;
 
-    //ÉçÉrÅ[éQâ¡É{É^Éì
+    //„É≠„Éì„ÉºÂèÇÂä†„Éú„Çø„É≥
     [SerializeField]
     Button m_joinWindowButton;
 
 
-    //ÉãÅ[ÉÄÉeÉLÉXÉg
+    //„É´„Éº„É†„ÉÜ„Ç≠„Çπ„Éà
     [SerializeField]
     TextMeshProUGUI m_roomNameText;
 
-    //ÉpÉXÉèÅ[ÉhÉeÉLÉXÉg
+    //„Éë„Çπ„ÉØ„Éº„Éâ„ÉÜ„Ç≠„Çπ„Éà
     [SerializeField]
     TextMeshProUGUI m_roomPasswordText;
 
-    //ÉãÅ[ÉÄçÏê¨É{É^Éì
+    //„É´„Éº„É†‰ΩúÊàê„Éú„Çø„É≥
     [SerializeField]
     Button m_createRoomButton;
 
@@ -52,21 +52,21 @@ public class LobbyProc : MonoBehaviour
     void Start()
     {
 
-        //çÏê¨
+        //‰ΩúÊàê
         m_createWindowButton.onClick.AddListener(() =>
         {
-            //îÒï\é¶
+            //ÈùûË°®Á§∫
             m_lobbyUI.gameObject.SetActive(false);
-            //ï\é¶
+            //Ë°®Á§∫
             m_createUI.gameObject.SetActive(true);
         });
 
-        //éQâ¡
+        //ÂèÇÂä†
         m_joinWindowButton.onClick.AddListener(() =>
         {
-            //îÒï\é¶
+            //ÈùûË°®Á§∫
             m_lobbyUI.gameObject.SetActive(false);
-            //ï\é¶
+            //Ë°®Á§∫
             m_joinUI.gameObject.SetActive(true);
         });
 
@@ -75,7 +75,7 @@ public class LobbyProc : MonoBehaviour
         {
             if (NetworkUtility.Instance.CreateRoom(m_roomNameText.name, m_roomPasswordText.name))
             {
-                //ÉVÅ[ÉìÉçÅ[Éh
+                //„Ç∑„Éº„É≥„É≠„Éº„Éâ
                 m_sceneChanger.ChangeScene();
             }
         });
