@@ -1,47 +1,48 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Utility;
 
 public class LobbyProc : MonoBehaviour
 {
     [SerializeField]
     SceneChanger m_sceneChanger;
 
-    //ƒƒr[‰æ–Ê
+    //ãƒ­ãƒ“ãƒ¼ç”»é¢
     [SerializeField]
     GameObject m_lobbyUI;
 
-    //ƒ‹[ƒ€ì¬‰æ–Ê
+    //ãƒ«ãƒ¼ãƒ ä½œæˆç”»é¢
     [SerializeField]
     GameObject m_createUI;
 
-    //ƒ‹[ƒ€ì¬‰æ–Ê
+    //ãƒ«ãƒ¼ãƒ ä½œæˆç”»é¢
     [SerializeField]
     GameObject m_joinUI;
 
 
 
-    //ƒƒr[ì¬ƒ{ƒ^ƒ“
+    //ãƒ­ãƒ“ãƒ¼ä½œæˆãƒœã‚¿ãƒ³
     [SerializeField]
     Button m_createWindowButton;
 
-    //ƒƒr[Q‰Áƒ{ƒ^ƒ“
+    //ãƒ­ãƒ“ãƒ¼å‚åŠ ãƒœã‚¿ãƒ³
     [SerializeField]
     Button m_joinWindowButton;
 
 
-    //ƒ‹[ƒ€ƒeƒLƒXƒg
+    //ãƒ«ãƒ¼ãƒ ãƒ†ã‚­ã‚¹ãƒˆ
     [SerializeField]
     TextMeshProUGUI m_roomNameText;
 
-    //ƒpƒXƒ[ƒhƒeƒLƒXƒg
+    //ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãƒ†ã‚­ã‚¹ãƒˆ
     [SerializeField]
     TextMeshProUGUI m_roomPasswordText;
 
-    //ƒ‹[ƒ€ì¬ƒ{ƒ^ƒ“
+    //ãƒ«ãƒ¼ãƒ ä½œæˆãƒœã‚¿ãƒ³
     [SerializeField]
     Button m_createRoomButton;
 
@@ -50,34 +51,33 @@ public class LobbyProc : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //TODO ƒ{ƒ^ƒ“‰Ÿ‚µ‚ÄƒV[ƒ““Ç‚İ‚İ
 
-        //ì¬
+        //ä½œæˆ
         m_createWindowButton.onClick.AddListener(() =>
         {
-            //”ñ•\¦
+            //éè¡¨ç¤º
             m_lobbyUI.gameObject.SetActive(false);
-            //•\¦
+            //è¡¨ç¤º
             m_createUI.gameObject.SetActive(true);
         });
 
-        //Q‰Á
+        //å‚åŠ 
         m_joinWindowButton.onClick.AddListener(() =>
         {
-            //”ñ•\¦
+            //éè¡¨ç¤º
             m_lobbyUI.gameObject.SetActive(false);
-            //•\¦
+            //è¡¨ç¤º
             m_joinUI.gameObject.SetActive(true);
         });
 
 
         m_createRoomButton.onClick.AddListener(() =>
         {
-            //TODO ƒlƒbƒgƒ[ƒNÚ‘±‚Åƒ‹[ƒ€ì¬
-            //ƒlƒbƒgƒ[ƒNˆ—‚ğƒVƒ“ƒOƒ‹ƒgƒ“‚É‚µ‚Ä‚±‚±‚Åˆ—‚ğs‚¤
-
-            //ƒV[ƒ“ƒ[ƒh
-            m_sceneChanger.ChangeScene();
+            if (NetworkUtility.Instance.CreateRoom(m_roomNameText.name, m_roomPasswordText.name))
+            {
+                //ã‚·ãƒ¼ãƒ³ãƒ­ãƒ¼ãƒ‰
+                m_sceneChanger.ChangeScene();
+            }
         });
 
     }
